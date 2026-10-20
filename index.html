@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f5">
+  <title>Для моего Владика 💗</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #e87991;
+      --deep-pink: #c94f70;
+      --soft-pink: #ffe2e9;
+      --cream: #fffaf6;
+      --brown: #684b4b;
+      --muted: #9b7c7d;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--brown);
+      background:
+        radial-gradient(ellipse at 10% 10%, #ffe1e9 0, transparent 38%),
+        radial-gradient(ellipse at 90% 85%, #f9e5d9 0, transparent 35%),
+        #fff7f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -45px;
+      opacity: 0;
+      animation: float-up 11s linear infinite;
+      user-select: none;
+    }
+
+    .heart:nth-child(1) { left: 8%; animation-delay: 0s; font-size: 20px; }
+    .heart:nth-child(2) { left: 24%; animation-delay: 4s; font-size: 15px; }
+    .heart:nth-child(3) { left: 43%; animation-delay: 2s; font-size: 25px; }
+    .heart:nth-child(4) { left: 68%; animation-delay: 6s; font-size: 18px; }
+    .heart:nth-child(5) { left: 88%; animation-delay: 1s; font-size: 23px; }
+    .heart:nth-child(6) { left: 56%; animation-delay: 8s; font-size: 14px; }
+
+    @keyframes float-up {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      12% { opacity: .55; }
+      85% { opacity: .4; }
+      100% { transform: translateY(-115vh) rotate(30deg); opacity: 0; }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 590px;
+    }
+
+    .top-note {
+      text-align: center;
+      color: var(--deep-pink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 17px;
+    }
+
+    .card {
+      background: rgba(255, 252, 250, .94);
+      border: 1px solid rgba(232, 121, 145, .22);
+      border-radius: 30px;
+      padding: 42px 36px;
+      text-align: center;
+      box-shadow: 0 22px 70px rgba(155, 83, 103, .13);
+      backdrop-filter: blur(8px);
+      animation: appear .55s ease both;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .illustration {
+      font-size: 65px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 5px 10px rgba(201, 79, 112, .12));
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      color: #a64f68;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 43px);
+      margin: 0 0 15px;
+    }
+
+    h2 {
+      font-size: clamp(27px, 6vw, 35px);
+      margin: 0 0 13px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 0 auto 25px;
+      max-width: 410px;
+    }
+
+    .tiny-heart {
+      color: var(--pink);
+      padding: 0 4px;
+    }
+
+    .button-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 370px;
+      margin: 26px auto 0;
+    }
+
+    .btn {
+      width: 100%;
+      min-height: 53px;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      padding: 14px 20px;
+      font-weight: 650;
+      transition: transform .18s, box-shadow .18s, background .18s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid #d95f80;
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #ee91a6, #cf5e7d);
+      box-shadow: 0 8px 18px rgba(207, 94, 125, .2);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 11px 23px rgba(207, 94, 125, .3);
+    }
+
+    .btn-secondary {
+      background: #fff4f5;
+      color: #a36c79;
+      border-color: #f1d8df;
+    }
+
+    .btn-option {
+      background: white;
+      color: #795761;
+      border-color: #f0dce1;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .btn-option:hover {
+      background: #fff1f4;
+      border-color: #eaa3b5;
+    }
+
+    .signature {
+      margin-top: 27px;
+      color: #c38a98;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    .progress-area {
+      text-align: left;
+      margin: 0 0 28px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #a77b84;
+      font-size: 12px;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: #f7e5e9;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, #f0a1b3, #d65d7e);
+      border-radius: inherit;
+      transition: width .3s ease;
+    }
+
+    .question-number {
+      color: #ce7b91;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .question {
+      font-size: 20px;
+      font-weight: 650;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 11px;
+      text-align: left;
+    }
+
+    .feedback {
+      margin-top: 19px;
+      padding: 15px;
+      border-radius: 15px;
+      background: #fff0f3;
+      color: #a64f68;
+      font-size: 14px;
+      line-height: 1.7;
+      animation: appear .3s ease both;
+    }
+
+    .feedback .btn {
+      margin-top: 13px;
+    }
+
+    .result-message {
+      background: linear-gradient(135deg, #fff0f3, #fff7ee);
+      border: 1px solid #f6dce2;
+      border-radius: 20px;
+      padding: 22px;
+      margin: 24px 0;
+      font-size: 16px;
+      line-height: 1.9;
+      text-align: left;
+    }
+
+    .result-message strong {
+      color: #ad4f6a;
+    }
+
+    .result-signature {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #bc5c78;
+      font-size: 22px;
+      line-height: 1.5;
+      margin-top: 22px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #bd939d;
+      font-size: 12px;
+      margin-top: 19px;
+      letter-spacing: .5px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .card {
+        padding: 30px 20px;
+        border-radius: 24px;
+      }
+
+      .illustration {
+        font-size: 55px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true">
+    <span class="heart">♡</span>
+    <span class="heart">♥</span>
+    <span class="heart">♡</span>
+    <span class="heart">♥</span>
+    <span class="heart">♡</span>
+    <span class="heart">♥</span>
+  </div>
+
+  <main class="page">
+    <div class="top-note">a little message for you · with love</div>
+
+    <section class="card" id="app" aria-live="polite">
+      <!-- Содержимое открытки появится здесь -->
+    </section>
+
+    <div class="footer-note">сделано с любовью специально для Владика ♡</div>
+  </main>
+
+  <script>
+    const app = document.getElementById("app");
+
+    const questions = [
+      {
+        title: "Ты меня любишь?",
+        answers: [
+          "Да, очень люблю.",
+          "Я тебя безумно люблю",
+          "Конечно, люблю."
+        ],
+        correct: [0, 1, 2],
+        success: "Вот это я понимаю! 💗 Любовь официально подтверждена.",
+        error: ""
+      },
+      {
+        title: "Ты женишься на мне?",
+        answers: [
+          "Да.",
+          "Конечно да.",
+          "Сто процентов да."
+        ],
+        correct: [0, 1, 2],
+        success: "Записано! 💍 Я это запомнила, мой хороший.",
+        error: ""
+      },
+      {
+        title: "Какой у меня цвет глаз?",
+        answers: [
+          "Синий 💙",
+          "Зелёный 💚",
+          "Карий 🤎"
+        ],
+        correct: [2],
+        success: "Правильно! Надеюсь, ты помнишь, какие они красивые. 🥹",
+        error: "Владик, ну как же так? 🥺 Посмотри мысленно мне в глаза и попробуй ещё раз."
+      },
+      {
+        title: "Кого я люблю больше всего?",
+        answers: [
+          "Петра Первого 👑",
+          "Петра Второго 👑",
+          "Тебя, мой любимый ❤️"
+        ],
+        correct: [2],
+        success: "Конечно, тебя! ❤️ И это самый важный ответ.",
+        error: "Ах вот как?! 😭 Давай ещё разок. Ты же знаешь правильный ответ!"
+      },
+      {
+        title: "Ну что, тебе понравился опрос?",
+        answers: [
+          "Да, понравился.",
+          "Нет, не понравился, ты вообще дура 😂",
+          "Конечно понравился, люблю тебя, моё солнышко ☀️"
+        ],
+        correct: [2],
+        success: "А вот теперь иди сюда, моё солнышко! 💋",
+        error: "Хммм… кажется, тут не хватает одного очень важного признания. 🥹 Попробуй ещё раз."
+      }
+    ];
+
+    let currentQuestion = 0;
+
+    function showIntro() {
+      app.innerHTML = `
+        <div class="illustration">💌</div>
+        <h1>Владик, я тебя люблю!</h1>
+        <p class="subtitle">
+          Я приготовила для тебя кое-что маленькое,
+          милое и очень личное <span class="tiny-heart">♥</span>
+          <br><br>
+          Готов пройти мой особенный тест?
+        </p>
+        <div class="button-stack">
+          <button class="btn btn-primary" onclick="startQuiz()">
+            Да, пройти тест 💗
+          </button>
+          <button class="btn btn-secondary" onclick="showSadness()">
+            Не хочу проходить 😶
+          </button>
+        </div>
+        <div class="signature">Твоя девочка ♡</div>
+      `;
+    }
+
+    function showSadness() {
+      app.innerHTML = `
+        <div class="illustration">🥺😭</div>
+        <h2>Влади-и-ик...</h2>
+        <p class="subtitle">
+          Я тут старалась, придумывала вопросы,
+          отправляла тебе свою любовь…
+          <br><br>
+          А ты не хочешь пройти мой тест? 💔
+          <br>
+          Ну пожа-а-алуйста?
+        </p>
+        <div class="button-stack">
+          <button class="btn btn-primary" onclick="startQuiz()">
+            Ладно, пройду, моя любовь 💗
+          </button>
+          <button class="btn btn-secondary" onclick="showSadness()">
+            Я всё ещё вредничаю 🙈
+          </button>
+        </div>
+        <div class="signature">Я всё равно тебя люблю. Даже вредного. ♡</div>
+      `;
+    }
+
+    function startQuiz() {
+      currentQuestion = 0;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      const number = currentQuestion + 1;
+      const progress = number / questions.length * 100;
+
+      app.innerHTML = `
+        <div class="progress-area">
+          <div class="progress-label">
+            <span>ТЕСТ НА ЛЮБОВЬ</span>
+            <span>Вопрос ${number} из ${questions.length}</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: ${progress}%"></div>
+          </div>
+        </div>
+
+        <div class="illustration">${number === 2 ? "💍" : number === 3 ? "👀" : number === 4 ? "❤️" : number === 5 ? "☀️" : "💗"}</div>
+        <div class="question-number">Вопрос № ${number}</div>
+        <h2>${q.title}</h2>
+
+        <div class="answers">
+          ${q.answers.map((answer, index) => `
+            <button class="btn btn-option" onclick="chooseAnswer(${index})">
+              <span>${["♡", "♡", "♡"][index]}</span>
+              &nbsp; ${answer}
+            </button>
+          `).join("")}
+        </div>
+        <div id="feedback"></div>
+      `;
+    }
+
+    function chooseAnswer(index) {
+      const q = questions[currentQuestion];
+      const feedback = document.getElementById("feedback");
+      const isCorrect = q.correct.includes(index);
+
+      if (isCorrect) {
+        feedback.innerHTML = `
+          <div class="feedback">
+            ${q.success}
+            <button class="btn btn-primary" onclick="nextQuestion()">
+              ${currentQuestion === questions.length - 1
+                ? "Узнать результат 💌"
+                : "Следующий вопрос →"}
+            </button>
+          </div>
+        `;
+
+        document.querySelectorAll(".btn-option").forEach(button => {
+          button.disabled = true;
+          button.style.opacity = "0.72";
+          button.style.cursor = "default";
+        });
+      } else {
+        feedback.innerHTML = `
+          <div class="feedback">
+            ${q.error}
+            <button class="btn btn-secondary" onclick="showQuestion()">
+              Попробовать ещё раз 💗
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      app.innerHTML = `
+        <div class="illustration">💌💗💌</div>
+        <div class="question-number">ТВОЙ РЕЗУЛЬТАТ</div>
+        <h1>Тест пройден!</h1>
+        <p class="subtitle">
+          Спасибо, что уделил мне немного своего времени,
+          мой любимый Владик.
+        </p>
+
+        <div class="result-message">
+          <strong>Ваши результаты теста:</strong>
+          <br><br>
+          Вы очень соскучились за вашей второй половинкой.
+          Напишите ей СМС-ку или наберите её по телефону,
+          поговорите и скажите, как сильно вы её любите.
+          <br><br>
+          <span style="font-size: 22px;">💕 💌 🫶🏻</span>
+        </div>
+
+        <p class="subtitle">
+          И если ты ещё не догадался, кто эта вторая половинка…
+          <br>
+          Это я, глупенький! ❤️
+        </p>
+
+        <div class="result-signature">
+          Я люблю тебя, Владик!<br>
+          Очень-очень сильно. ♡
+        </div>
+
+        <div class="button-stack">
+          <button class="btn btn-primary" onclick="sendLove()">
+            Отправить поцелуй 💋
+          </button>
+          <button class="btn btn-secondary" onclick="startQuiz()">
+            Пройти тест ещё раз 🔁
+          </button>
+        </div>
+      `;
+    }
+
+    function sendLove() {
+      app.innerHTML = `
+        <div class="illustration">💋❤️💋</div>
+        <h1>Целую тебя!</h1>
+        <p class="subtitle">
+          Представь, что я сейчас крепко-крепко тебя обнимаю,
+          целую и никуда не отпускаю.
+          <br><br>
+          А теперь твоя очередь — позвони мне, мой любимый. 🥹
+        </p>
+        <div class="result-signature">
+          До скорой встречи, моё солнышко! ☀️
+        </div>
+        <div class="button-stack">
+          <button class="btn btn-primary" onclick="showResult()">
+            Вернуться к результату 💗
+          </button>
+        </div>
+      `;
+    }
+
+    showIntro();
+  </script>
+</body>
+</html>
